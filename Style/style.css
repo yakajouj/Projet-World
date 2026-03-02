@@ -1,0 +1,10 @@
+.tableau {
+    border: 1px solid black;
+    height: 60vh;
+}
+
+#display-picture img {
+    height: 40vh;
+    width: 30vh;
+}
+
