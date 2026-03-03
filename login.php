@@ -6,6 +6,6 @@
     <title>connexion</title>
 </head>
 <body>
-    <form action=""></form>
+    <form action=""><button>connexion</button></form>
 </body>
 </html>
