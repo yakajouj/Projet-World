@@ -14,13 +14,16 @@
                 <li><a href="#" id="login"><img src="img/login.png" alt="login"></a></li>
                 </ul>
         </nav>
-        <form id="loginbox">
-            <label> nom utilisateur</label>
-            <input type="text" name="nom_utilisateur" id="user_name">
-            <label> mot de passe </label>
-            <input type="password" id="password">
-            <input type="submit" value="connexion">
-        </form>
+        <div id="loginbox">
+            <form>
+                <label> nom utilisateur</label>
+                <input type="text" name="nom_utilisateur" id="user_name">
+                <label> mot de passe </label>
+                <input type="password" id="password">
+                <input type="submit" value="connexion">
+            </form>
+            <li id="inscription"><a href="inscription.php">s'inscrire</a></li>
+        </div>
     </header>
 </body>
 </html>
