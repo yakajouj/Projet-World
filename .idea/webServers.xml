@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c181a9da-3428-44ca-967c-e02172a31d89" name="blindgame" url="">
+        <fileTransfer rootFolder="/web" accessType="SFTP" host="ispconfig.net.local" port="22" sshConfigId="377ab55d-d534-4d0a-9ec1-af70ab1c2824" sshConfig="bouchardblindgame@ispconfig.net.local:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
