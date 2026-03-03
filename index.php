@@ -19,6 +19,7 @@
             <input type="text" name="nom_utilisateur" id="user_name">
             <label> mot de passe </label>
             <input type="password" id="password">
+            <input type="submit" value="connexion">
         </form>
     </header>
 </body>
