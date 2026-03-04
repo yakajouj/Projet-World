@@ -6,28 +6,6 @@
     <title>inscription</title>
 </head>
 <body>
-    <form method="POST" action="inscription.php">
-        <label>inscription</label>
-        <label>
-            <br>nom utilisateur
-            <input type="text" name="nom_utilisateur" id="user_name">
-        </label>
-        <label>
-            <br>email
-            <input type="email" name="email" id="user_mail">
-        </label>
-        <label>
-            mot de passe
-            <input type="password" id="password" name="password">
-        </label>
-        <label>
-            confirmer mot de passe
-            <input type="password" id="confirm_password" name="confirm_password">
-        </label>
-        <input type="submit" value="s'inscrire" name="submit" id="submit">
-    </form>
-</body>
-</html>
 <?php
 require 'bdd.php';
 connexionbdd();
@@ -57,7 +35,7 @@ if (isset($_POST['nom_utilisateur'],$_POST['email'],$_POST['password']))
     {
         $blindgamedb = connexionbdd();
         $crypted_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $request = $blindgamedb->prepare("INSERT INTO compte (nom_utilisateur,email,password) VALUES (?,?,?)");
+        $request = $blindgamedb->prepare("INSERT INTO compte (username,email,password) VALUES (?,?,?)");
         $insertionn_reussie = $request->execute([
                 $_POST['nom_utilisateur'],
                 $_POST['email'],
@@ -78,3 +56,25 @@ else
 }
 
 ?>
+    <form method="POST">
+        <label>inscription</label>
+        <label>
+            <br>nom utilisateur
+            <input type="text" name="nom_utilisateur" id="user_name">
+        </label>
+        <label>
+            <br>email
+            <input type="email" name="email" id="user_mail">
+        </label>
+        <label>
+            mot de passe
+            <input type="password" id="password" name="password">
+        </label>
+        <label>
+            confirmer mot de passe
+            <input type="password" id="confirm_password" name="confirm_password">
+        </label>
+        <input type="submit" value="s'inscrire" name="submit" id="submit">
+    </form>
+</body>
+</html>
