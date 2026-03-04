@@ -1,16 +1,36 @@
-img[alt=login]{
-    margin-left: 90%;
-    width: 5%;
-    height: auto;
-}
-ul{
+/* 1. On utilise le <ul> pour pousser le bouton à droite proprement */
+ul {
     list-style: none;
+    display: flex;             /* Active Flexbox */
+    justify-content: flex-end; /* Pousse tout à droite ! */
+    margin: 0;
+    padding: 0;
 }
-#loginbox{
+
+/* 2. L'ancre : On lui donne un peu de marge pour ne pas toucher le bord de l'écran */
+li {
+    position: relative;
+    margin-right: 5%;
+}
+
+/* 3. L'image de login */
+img[alt=login] {
+    width: 50px; /* Utiliser des pixels (50px) est plus stable que 5% pour une icône */
+    height: auto;
+    cursor: pointer; /* Affiche une petite main au survol */
+}
+
+/* 4. La fameuse boîte ! */
+#loginbox {
     display: none;
-    position: absolute; /* Permet de voler au-dessus du reste */
+    position: absolute;
+    top: 100%; /* S'accroche pile en dessous du bouton */
+    right: 0;  /* S'aligne parfaitement sur la droite du bouton */
+
     background: white;
     border: 1px solid black;
     padding: 15px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2); /*  ombre*/
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+
+    min-width: 200px; /* Pour éviter que la boîte soit toute écrasée */
 }
