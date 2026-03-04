@@ -55,26 +55,26 @@ if (isset($_POST['nom_utilisateur'],$_POST['email'],$_POST['password']))
     }
     else
     {
-        echo "reussi";
+        $blindgamedb = connexionbdd();
+        $crypted_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $request = $blindgamedb->prepare("INSERT INTO compte (nom_utilisateur,email,password) VALUES (?,?,?)");
+        $insertionn_reussie = $request->execute([
+                $_POST['nom_utilisateur'],
+                $_POST['email'],
+                $crypted_password
+        ]);
+        if ($insertionn_reussie)
+        {
+            echo "Votre compte à bien était crée";
+        }
+        else{
+            echo "Une erreur est survenue lors de la création du compte";
+        }
     }
 }
 else
 {
-    $blindgamedb = connexionbdd();
-    $crypted_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $request = $blindgamedb->prepare("INSERT INTO compte (nom_utilisateur,email,password) VALUES (?,?,?)");
-    $insertionn_reussie = $request->execute([
-            $_POST['nom_utilisateur'],
-        $_POST['email'],
-        $crypted_password
-    ]);
-    if ($insertionn_reussie)
-    {
-        echo "Votre compte à bien était crée";
-    }
-    else{
-        echo "Une erreur est survenue lors de la création du compte";
-    }
+    echo "formulaire non envoyer";
 }
 
 ?>
