@@ -6,7 +6,7 @@
     <title>inscription</title>
 </head>
 <body>
-    <form>
+    <form method="POST" action="inscription.php">
         <label>inscription</label>
         <label>
             <br>nom utilisateur
@@ -24,45 +24,45 @@
             confirmer mot de passe
             <input type="password" id="confirm_password" name="confirm_password">
         </label>
-        <input type="submit" value="s'inscrire">
+        <input type="submit" value="s'inscrire" name="submit" id="submit">
     </form>
 </body>
 </html>
 <?php
 require 'bdd.php';
 connexionbdd();
-if ($_POST['nom_utilisateur'] != "" && $_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirm_password'] !== $_POST['password'] )
+if (isset($_POST['nom_utilisateur'],$_POST['email'],$_POST['password']))
 {
-    if (isset($_POST['nom_utilisateur'],$_POST['email'],$_POST['password'],$_POST['confirm_password']))
+    if (empty($_POST['nom_utilisateur']))
     {
-        if (empty($_POST['nom_utilisateur']))
-        {
-            echo "nom utilisateur est vide";
-        }
-        elseif (empty($_POST['email']))
-        {
-            echo "email est vide";
-        }
-        elseif (empty($_POST['password']))
-        {
-            echo "mot de passe est vide";
-        }
-        elseif (empty($_POST['confirm_password']))
-        {
-            if ($_POST['password'] != $_POST['confirm_password'])
-            {
-                echo "les mot de passe ne correspondent pas";
-            }
-            else {
-                echo "confirm mot de passe est vide";
-            }
-        }
+        echo "nom utilisateur est vide";
+    }
+    elseif (empty($_POST['email']))
+    {
+        echo "email est vide";
+    }
+    elseif (empty($_POST['password']))
+    {
+        echo "mot de passe est vide";
+    }
+    elseif (empty($_POST['confirm_password']))
+    {
+        echo "confirm mot de passe est vide";
+    }
+    elseif ($_POST['password'] != $_POST['confirm_password'])
+    {
+        echo "les mots de passe ne corespondent pas";
+    }
+    else
+    {
+        echo "reussi";
     }
 }
 else
 {
-    echo "une erreur c'est produite:";
-
+    if (isset($_POST['submit'])) {
+        echo "une erreur c'est produite:";
+    }
 }
 
 ?>
