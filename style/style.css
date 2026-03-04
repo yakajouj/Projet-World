@@ -15,7 +15,7 @@ li {
 
 /* 3. L'image de login */
 img[alt=login] {
-    width: 50px; /* Utiliser des pixels (50px) est plus stable que 5% pour une icône */
+    width: 80px; /* Utiliser des pixels (50px) est plus stable que 5% pour une icône */
     height: auto;
     cursor: pointer; /* Affiche une petite main au survol */
 }
