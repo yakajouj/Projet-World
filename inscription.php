@@ -14,15 +14,20 @@ if (isset($_POST['submit'])) {
 
         if (empty($_POST['nom_utilisateur'])) {
             echo "nom utilisateur est vide";
-        } elseif (strlen($_POST['nom_utilisateur']) > 20) {
+        }
+        elseif (strlen($_POST['nom_utilisateur']) > 20) {
             echo "le nom utilisateur doit être au maximum 20 caractères";
-        } elseif (!preg_match('/^[\p{L}0-9 ._-]+$/u', $_POST['nom_utilisateur'])) {
+        }
+        elseif (!preg_match('/^[\p{L}0-9 ._-]+$/u', $_POST['nom_utilisateur'])) {
             echo "Le nom d'utilisateur contient des caractères non autorisés.";
-        } elseif (empty($_POST['email'])) {
+        }
+        elseif (empty($_POST['email'])) {
             echo "email est vide";
-        } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        }
+        elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             echo "email n'est pas valide";
-        } elseif (empty($_POST['password'])) {
+        }
+        elseif (empty($_POST['password'])) {
             echo "mot de passe est vide";
         } elseif (empty($_POST['confirm_password'])) {
             echo "confirm mot de passe est vide";
