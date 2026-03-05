@@ -1,10 +1,11 @@
 <?php
 function connexionbdd()
 {
-    $userbd = "c43bouchard";
-    $passwordbd = "2019200Rb@betryu";
-    $dbname = "c43blindgame";
-    $host = "ispconfig.net.local";
+    $env = parse_ini_file('.env');
+    $host = $env['DB_HOST'];
+    $dbname = $env['DB_NAME'];
+    $userbd = $env['DB_USER'];
+    $passwordbd = $env['DB_PASS'];
     try
     {
         $conexion = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $userbd, $passwordbd);
