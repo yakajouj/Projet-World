@@ -8,12 +8,15 @@
 <body>
 <?php
 require 'bdd.php';
-connexionbdd();
 if (isset($_POST['nom_utilisateur'],$_POST['email'],$_POST['password']))
 {
     if (empty($_POST['nom_utilisateur']))
     {
         echo "nom utilisateur est vide";
+    }
+    elseif (!preg_match('/^[\p{L}0-9 ._-]+$/u'))
+    {
+        echo "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres, des espaces et des tirets ou point  (- ou _ ou .)";
     }
     elseif (empty($_POST['email']))
     {
@@ -31,22 +34,34 @@ if (isset($_POST['nom_utilisateur'],$_POST['email'],$_POST['password']))
     {
         echo "les mots de passe ne corespondent pas";
     }
+    elseif (strlen($_POST['nom_utilisateur'])>20)
+    {
+        echo "le nom utilisateur doit être au maximum 20 caractère";
+    }
     else
     {
         $blindgamedb = connexionbdd();
-        $crypted_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $request = $blindgamedb->prepare("INSERT INTO compte (username,email,password) VALUES (?,?,?)");
-        $insertionn_reussie = $request->execute([
-                $_POST['nom_utilisateur'],
-                $_POST['email'],
-                $crypted_password
-        ]);
-        if ($insertionn_reussie)
+        $verification_nom_utilisateur = $blindgamedb->prepare("SELECT id_joueur FROM compte  WHERE username = ?");
+        $verification_nom_utilisateur->execute([$_POST['nom_utilisateur']]);
+        if ($verification_nom_utilisateur ->rowCount() > 0)
         {
-            echo "Votre compte à bien était crée";
+            echo "ce nom utilisateur est déja utiliser";
         }
         else{
-            echo "Une erreur est survenue lors de la création du compte";
+            $crypted_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $request = $blindgamedb->prepare("INSERT INTO compte (username,email,password) VALUES (?,?,?)");
+            $insertionn_reussie = $request->execute([
+                    $_POST['nom_utilisateur'],
+                    $_POST['email'],
+                    $crypted_password
+            ]);
+            if ($insertionn_reussie)
+            {
+                echo "Votre compte à bien était crée";
+            }
+            else{
+                echo "Une erreur est survenue lors de la création du compte";
+            }
         }
     }
 }
