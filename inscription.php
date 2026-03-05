@@ -26,8 +26,7 @@ if (isset($_POST['submit'])) {
         }
         elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             echo "email n'est pas valide";
-        }
-        elseif (empty($_POST['password'])) {
+        } elseif (empty($_POST['password'])) {
             echo "mot de passe est vide";
         } elseif (empty($_POST['confirm_password'])) {
             echo "confirm mot de passe est vide";
