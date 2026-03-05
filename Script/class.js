@@ -1,8 +1,3 @@
-const a001 = ["Cloud", "Strife", "Final Fantasy 7", "Final Fantasy", "Cloud.png"];
-const a002 = ["Tifa", "Lockhart", "Final Fantasy 7", "Final Fantasy", "tifa.png"];
-const a003 = ["Aerith", "Gainsbourgh", "Final Fantasy 7", "Final Fantasy", "aerith.png"];
-const a004 = ["Mario", "le plombier", "Super Mario Odyssey", "Super Mario Bros", "Mario.mp3"];
-
 const s001 = ["Final Fantasy", "Square Enix"];
 const s002 = ["Super Mario", "Nintendo"];
 const s003 = ["Sonic", "Sega"];
@@ -133,4 +128,4 @@ const t016 = ["t016", j027, "Music", "Difficile"];
 const t017 = ["t017", j031, "Music", "Moyen"];
 
 
-export const allQuestions = [t001, t002, t003, t004, t005, t006, t007, t008, t009, t010, t011, t012, t013, t014, t015, t016, t017];
+export const allQuestions = [t001, t002];
