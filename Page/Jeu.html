@@ -10,8 +10,14 @@
     <div class="tableau">
         <span id="question"></span>
         <p id="first-display">C'est quoi ça ?</p> 
-        <button id="answer">Cliquer ici stp</button> 
+        <button id="start">Cliquer ici stp</button> 
         <button id="reset">Clique ici pour recommencer</button>
+        <input type="text" id="game" list="gameAnswer">
+        <datalist id="gameAnswer"></datalist>
+        <button id="send">Valider</button>
+        <p id="revealed"></p>
+        <button id ="newQuestion">Relancer</button>
+        <p id=score>Score: </p>
     </div>
 
     <script type="module" src="../Script/script.js"></script>
