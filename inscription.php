@@ -82,5 +82,6 @@ if (isset($_POST['submit'])) {
     </label>
     <input type="submit" value="s'inscrire" name="submit" id="submit">
 </form>
+<a>jouer</a>
 </body>
 </html>
