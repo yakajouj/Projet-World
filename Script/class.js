@@ -66,6 +66,15 @@ const s065 = ["Fall Guys","Mediatonic, Devolver Digital et Epic Games"];
 const s066 = ["Pico Park", "TECOPARK (Teco)"];
 const s067 = ["Guilty Gear", "Arc System Works"];
 const s068 = ["Mega Man", "Capcom"]
+const s069 = ["Clash Royale", "Supercell"];
+const s070 = ["Clash of Clans", "Supercell"];
+const s071 = ["Outer Wilds", "Mobius Digital et Annapurna Interactive"];
+const s072 = ["Hades", "Supergiant Games"];
+const s073 = ["Agar.io", "Matheus Valadares"];
+const s074 = ["Among Us", "Innersloth"];
+const s075 = ["Slither.io", "Steve Howse"];
+const s076 = ["Genshin Impact", "miHoYo"];
+const s077 = ["World of Warcraft", "Blizzard Entertainment"];
 
 
 const j001 = ["Final Fantasy VII", s001, 1997];
@@ -167,7 +176,20 @@ const j096 = ["Pokémon Rubis Oméga/Saphir Alpha", s042, 2014];
 const j097 = ["Pokémon Soleil/Lune", s042, 2016];
 const j098 = ["Pokémon Ultra-Soleil/Ultra-Lune", s042, 2017];
 const j099 = ["Pokémon Épée/Bouclier", s042, 2019];
-
+const j100 = ["Wii Sports", s043, 2006];
+const j101 = ["Les Sims", s044, 2000];
+const j102 = ["Les Sims 4", s044, 2014];
+const j103 = ["Animal Crossing: New Leaf", s045, 2012];
+const j104 = ["Animal Crossing: New Horizons", s045, 2020];
+const j105 = ["Animal Crossing: Wild World", s045, 2005];
+const j106 = ["Call of Duty: Modern Warfare", s046, 2007];
+const j107 = ["Call of Duty: Modern Warfare 2", s046, 2009];
+const j108 = ["Call of Duty: Modern Warfare 3", s046, 2011];
+const j109 = ["Call of Duty: Black Ops", s046, 2010];
+const j110 = ["Call of Duty: Black Ops II", s046, 2012];
+const j111 = ["Call of Duty: Black Ops III", s046, 2015];
+const j112 = ["Call of Duty: World at War", s046, 2008];
+const j113 = ["Pokémon Rouge Feu/Vert Feuille", s042, 2004];
 
 const t001 = ["t001", j001, "Screenshot", "Facile"];
 const t002 = ["t002", j007, "Sound", "Moyen"];
@@ -190,7 +212,55 @@ const t018 = ["t018", j060, "Screenshot", "Facile"];
 const t019 = ["t019", j038, "Music", "Difficile"];
 const t020 = ["t020", j002, "Music", "Difficile"];
 const t021 = ["t021", j002, "Screenshot", "Difficile"];
+const t022 = ["t022", j082, "Screenshot", "Moyen"];
+const t023 = ["t023", j109, "Screenshot", "Facile"];
+const t024 = ["t024", j107, "Screenshot", "Moyen"];
+const t025 = ["t025", j109, "Music", "Moyen"];
+const t026 = ["t026", j110, "Sound", "Difficile"];
+const t027 = ["t027", j112, "Sound", "Difficile"];
+const t028 = ["t028", j112, "Sound", "Difficile"];
+const t029 = ["t029", j107, "Sound", "Moyen"];
+const t030 = ["t030", j110, "Screenshot", "Difficile"];
+const t031 = ["t031", j110, "Screenshot", "Moyen"];
+const t032 = ["t032", j112, "Sound", "Moyen"];
+const t033 = ["t033", j110, "Sound", "Moyen"];
+const t034 = ["t034", j108, "Screenshot", "Difficile"];
+const t035 = ["t035", j107, "Screenshot", "Difficile"];
+const t036 = ["t036", j093, "Music", "Facile"];
+const t037 = ["t037", j091, "Music", "Facile"];
+const t038 = ["t038", j092, "Music", "Facile"];
+const t039 = ["t039", j099, "Music", "Facile"];
+const t040 = ["t040", j090, "Music", "Moyen"];
+const t041 = ["t041", j096, "Music", "Facile"];
+const t042 = ["t042", j096, "Music", "Moyen"];
+const t043 = ["t043", j090, "Music", "Moyen"];
+const t044 = ["t044", j089, "Music", "Moyen"];
+const t045 = ["t045", j096, "Music", "Facile"];
+const t046 = ["t046", j096, "Music", "Facile"];
+const t047 = ["t047", j097, "Music", "Facile"];
+const t048 = ["t048", j097, "Music", "Difficile"];
+const t049 = ["t049", j096, "Music", "Difficile"];
 
 
-export const allGames = [j001, j002, j003, j004, j005, j006, j007, j008, j009, j010, j011, j012, j013, j014, j015, j016, j017, j018, j019, j020, j021, j022, j023, j024, j025, j026, j027, j028, j029, j030, j031, j032, j033, j034, j035, j036, j037, j038, j039, j040, j041, j042]
-export const allQuestions = [t001, t002, t003, t004, t005, t006, t007, t008, t009, t010, t011, t012, t013, t014, t015, t016, t017];
+export const allGames = [
+  j001, j002, j003, j004, j005, j006, j007, j008, j009, j010,
+  j011, j012, j013, j014, j015, j016, j017, j018, j019, j020,
+  j021, j022, j023, j024, j025, j026, j027, j028, j029, j030,
+  j031, j032, j033, j034, j035, j036, j037, j038, j039, j040,
+  j041, j042, j043, j044, j045, j046, j047, j048, j049, j050,
+  j051, j052, j053, j054, j055, j056, j057, j058, j059, j060,
+  j061, j062, j063, j064, j065, j066, j067, j068, j069, j070,
+  j071, j072, j073, j074, j075, j076, j077, j078, j079, j080,
+  j081, j082, j083, j084, j085, j086, j087, j088, j089, j090,
+  j091, j092, j093, j094, j095, j096, j097, j098, j099, j100,
+  j101, j102, j103, j104, j105, j106, j107, j108, j109, j110,
+  j111, j112, j113
+];
+
+export const allQuestions = [
+  t001, t002, t003, t004, t005, t006, t007, t008, t009, t010,
+  t011, t012, t013, t014, t015, t016, t017, t018, t019, t020,
+  t021, t022, t023, t024, t025, t026, t027, t028, t029, t030,
+  t031, t032, t033, t034, t035, t036, t037, t038, t039, t040,
+  t041, t042, t043, t044, t045, t046, t047, t048, t049
+];
