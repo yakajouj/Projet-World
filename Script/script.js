@@ -32,6 +32,8 @@ function getQuestion() {
     document.getElementById("question").innerHTML = "";
     let availableQuestions = allQuestions.filter(question => !usedQuestions.includes(question));
     if (availableQuestions.length === 0) {
+        document.getElementById("score").innerHTML = "";
+        document.getElementById("questionName").innerHTML = "";
         document.getElementById("question").innerHTML = "Vous avez terminé toutes les questions !";
         resetbutton.style.display = "inline-block";
 
