@@ -14,8 +14,12 @@ body, html {
     width: 90vh;
 }
 
+#gameSelect0, #gameSelect1, #gameSelect2, #gameFunction {
+    display: none;
+}
+
 #question {
-    height: 60%;
+    height: 60vh;
     max-height: 60vh;
     max-width: 50vh;
     display: flex;
@@ -28,6 +32,10 @@ body, html {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+}
+
+#questionName {
+    
 }
 
 button {
