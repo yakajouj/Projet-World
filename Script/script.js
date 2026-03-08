@@ -1,10 +1,22 @@
 import { allQuestions } from "./class.js";
 import { allGames } from "./class.js";
 
-let score = 0;
+allGames.sort((a, b) => a[0].localeCompare(b[0]));
+var goodAnswer = 0;
 const usedQuestions = [];
 let currentQuestion; 
 var list = document.getElementById('gameAnswer');
+
+const resetbutton = document.getElementById("reset");
+const sendbutton = document.getElementById("send");
+const userInput = document.getElementById("game");
+const newbutton = document.getElementById("newQuestion");
+const timeAttackbutton = document.getElementById("timeAttack");
+const infinitebutton = document.getElementById("infinite");
+
+const gameSelect1 = document.getElementById("gameSelect1");
+const gameSelect2 = document.getElementById("gameSelect2");
+const gameFunction = document.getElementById("gameFunction");
 
 allGames.forEach(function (item) {
     var option = document.createElement('option');
@@ -12,22 +24,15 @@ allGames.forEach(function (item) {
     list.appendChild(option);
 });
 
-function resetGame() {
-    location.reload();
-}
-
 function getQuestion() {
     resetbutton.style.display = "none";
     sendbutton.style.display = "none";
     userInput.style.display = "none";
     newbutton.style.display = "none";
     document.getElementById("question").innerHTML = "";
-    startbutton.style.display = "none";
     let availableQuestions = allQuestions.filter(question => !usedQuestions.includes(question));
     if (availableQuestions.length === 0) {
         document.getElementById("question").innerHTML = "Vous avez terminé toutes les questions !";
-        document.getElementById("first-display").innerHTML = "";
-        startbutton.style.display = "none";
         resetbutton.style.display = "inline-block";
 
         resetbutton.addEventListener("click", function () {
@@ -38,61 +43,91 @@ function getQuestion() {
     let question = availableQuestions[randomIndex];
     currentQuestion = question; 
 
-    document.getElementById("score").innerHTML = "Score: " + score;
-
-    if (question[2] === "Music" || question[2] === "Sound") {
+    switch (question[2]) {
+    case "Music":
         let music = document.createElement("audio");
         music.src = "../Assets/Question/" + question[0] + ".mp3";
         music.controls = true;
         document.getElementById("question").appendChild(music);
+        music.play();
+        document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cette musique?";
         sendbutton.style.display = "inline-block";
         userInput.style.display = "inline-block";
-    } else {
-        let picture = document.createElement("img");
-        picture.src = "../Assets/Question/" + question[0] + ".png";
-        document.getElementById("question").appendChild(picture);
+        break;
+    case "Sound":   
+        let sound = document.createElement("audio");
+        sound.src = "../Assets/Question/" + question[0] + ".mp3";
+        sound.controls = true;
+        document.getElementById("question").appendChild(sound);
+        sound.play();
+        document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cet extrait audio ?";
         sendbutton.style.display = "inline-block";
         userInput.style.display = "inline-block";
+        break;
+    case "Screenshot":
+        let screenshot = document.createElement("img");
+        screenshot.src = "../Assets/Question/" + question[0] + ".png";
+        document.getElementById("question").appendChild(screenshot);
+        document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cette capture d'écran ?";
+        sendbutton.style.display = "inline-block";
+        userInput.style.display = "inline-block";
+        break;
     }
 }
 
-function answer() {
+ function answer() {
     let answer = userInput.value;
-    if (answer === currentQuestion[1][0]) {
-        score += 1;
-        document.getElementById("score").innerHTML = "Score: " + score;
-    } else if (score >= 1) {
-        score -= 1;
-        document.getElementById("score").innerHTML = "Score: " + score;
+    if (answer === currentQuestion[1][0] && goodAnswer === 0) {
+        goodAnswer += 1;
+        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+        document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+        document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
+        } else {
+            document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+            document.getElementById("score").innerHTML = "Bonne réponse: " + goodAnswer;
     }
+    } else  if (answer === currentQuestion[1][0]) {
+        goodAnswer += 1;
+        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+        document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+        document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
+        } else {
+            document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+            document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
+    }
+    } else {
+        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+    } else {
+        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+    }
+    }
+    
     usedQuestions.push(currentQuestion); 
     userInput.value = ""; 
-}
+} 
 
-function questionRevealed() {
-    document.getElementById("revealed").innerHTML = "Réponse : " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-}
 
-const startbutton = document.getElementById("start");
-const resetbutton = document.getElementById("reset");
-const sendbutton = document.getElementById("send");
-const userInput = document.getElementById("game");
-const newbutton = document.getElementById("newQuestion");
-
-resetbutton.style.display = "none";
-sendbutton.style.display = "none";
-userInput.style.display = "none";
-newbutton.style.display = "none";
-document.getElementById("score").innerHTML = "";
-
-startbutton.addEventListener("click", getQuestion); 
 sendbutton.addEventListener("click", function() {
-    answer();
     sendbutton.style.display = "none";
-    questionRevealed();
+    userInput.style.display = "none";
+    answer();
     newbutton.style.display = "inline-block";
 }); 
+
 newbutton.addEventListener("click",function() {
     document.getElementById("revealed").innerHTML = "";
     getQuestion();
+});
+
+infinitebutton.addEventListener("click", function() {
+    gameSelect1.style.display = "none";
+    gameFunction.style.display = "inline-block";
+    document.getElementById("score").innerHTML = "Bonne réponse: " + goodAnswer;
+    getQuestion();
+});
+
+timeAttackbutton.addEventListener("click", function() {
+    gameSelect1.style.display = "none";
+    gameSelect2.style.display = "inline-block";
 });
