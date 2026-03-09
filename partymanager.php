@@ -19,7 +19,7 @@ class partymanager
     {
 
     }
-    public function perdre_vie($vie)
+    public function perdre_vie()
     {
 
     }
