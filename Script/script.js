@@ -18,8 +18,10 @@ var list = document.getElementById('gameAnswer');
 let difficultyMode = "";
 let gameMode = "";
 let questionList;
-let lifeLefted;
+let defeatUnit;
 
+
+const startbutton = document.getElementById("start");
 const resetbutton = document.getElementById("reset");
 const sendbutton = document.getElementById("send");
 const userInput = document.getElementById("game");
@@ -31,12 +33,16 @@ const easybutton = document.getElementById("easy");
 const mediumbutton = document.getElementById("medium");
 const hardbutton = document.getElementById("hard");
 
+
+const gameSelect0 = document.getElementById("gameSelect0");
 const gameSelect1 = document.getElementById("gameSelect1");
 const gameSelect2 = document.getElementById("gameSelect2");
 const gameFunction = document.getElementById("gameFunction");
-const gameEnd = document.getElementById("gameEnd");
+const gameEnd1 = document.getElementById("gameEnd1");
+const gameEnd2 = document.getElementById("gameEnd2");
+const gameFunction2 = document.getElementById("gameFunction2");
 
-
+gameSelect0.style.display = "inline-block";
 
 //-------------------------Sélection du mode et de la difficulté----------------------------------------
 
@@ -67,33 +73,6 @@ infinitebutton.addEventListener("click", function() {
     return gameMode = "Infinite";
 });
 
-easybutton.addEventListener("click", function() {
-    gameSelect2.style.display = "none";
-    difficultyMode = "Easy";
-    setGameList(difficultyMode);
-    setGameRule(gameMode)
-    getQuestion()
-    gameFunction.style.display = "inline-block"
-});
-
-mediumbutton.addEventListener("click", function() {
-    gameSelect2.style.display = "none";
-    difficultyMode = "Medium";
-    setGameList(difficultyMode);
-    setGameRule(gameMode);
-    getQuestion();
-    gameFunction.style.display = "inline-block"
-});
-
-hardbutton.addEventListener("click", function() {
-    gameSelect2.style.display = "none";
-    difficultyMode = "Hard";
-    setGameList(difficultyMode);
-    setGame(gameMode)
-    getQuestion();
-    gameFunction.style.display = "inline-block"
-});
-
 function setGameList(difficultyMode) {
     switch (difficultyMode) {
         case "Easy":
@@ -121,7 +100,6 @@ function setGameList(difficultyMode) {
             });
             break;
     }
-    return questionList;
 }
 
 
@@ -130,17 +108,19 @@ function setGameRule(gameMode) {
         case "Survive" :
             switch (difficultyMode) {
                 case "Easy":
-                    lifeLefted = 3
+                    defeatUnit = 3
                     break;
                 case "Medium":
-                    lifeLefted = 2
+                    defeatUnit = 2
                     break;
                 case "Hard":
-                    lifeLefted = 1
+                    defeatUnit = 1
                     break;
             }
-            return lifeLefted;
+        case "Time Attack" :
+            defeatUnit = Date.now();
     }
+    return defeatUnit;
 }
 
 //--------------------------------------------Fonction pour faire tourner le jeu--------------------------------------------------------------------
@@ -245,14 +225,14 @@ function getQuestion() {
     } else {
         if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
             if (gameMode === "Survive") {
-            lifeLefted -= 1;
+            defeatUnit -= 1;
         }
         document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
     } else {
         if (gameMode === "Survive") {
-            lifeLefted -= 1;
+            defeatUnit -= 1;
         }
-        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2] + " <br> " + lifeLefted;
+        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2] ;
     }
     }
     }
@@ -265,13 +245,117 @@ sendbutton.addEventListener("click", function() {
     sendbutton.style.display = "none";
     userInput.style.display = "none";
     answer();
-    if (lifeLefted == 0) {
+    if (gameMode === "Survive" && defeatUnit == 0) {
         gameFunction.style.display = "none";
         document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
-        gameEnd.style.display = "inline-block"
+        gameEnd1.style.display = "inline-block"
         resetbutton.style.display = "inline-block";
     } else {
     newbutton.style.display = "inline-block";
     }
 });
 
+startbutton.addEventListener("click", function() {
+    gameSelect0.remove()
+    gameSelect1.style.display = "inline-block";
+});
+
+newbutton.addEventListener("click",function() {
+    document.getElementById("revealed").innerHTML = "";
+    getQuestion();
+});
+
+resetbutton.addEventListener("click", function () {
+    location.reload();
+});
+
+timeAttackbutton.addEventListener("click", function() {
+    gameSelect1.style.display = "none";
+    gameSelect2.style.display = "inline-block";
+    return gameMode = "Time Attack";
+});
+
+survivebutton.addEventListener("click", function() {
+    gameSelect1.style.display = "none";
+    gameSelect2.style.display = "inline-block";
+    return gameMode = "Survive";
+});
+
+infinitebutton.addEventListener("click", function() {
+    gameSelect1.style.display = "none";
+    gameSelect2.style.display = "inline-block";
+    return gameMode = "Infinite";
+});
+
+
+easybutton.addEventListener("click", function() {
+    gameSelect2.style.display = "none";
+    difficultyMode = "Easy";
+    setGameList(difficultyMode);
+    setGameRule(gameMode)
+    if (gameMode === "Time Attack") {
+        const timeLimit = defeatUnit + 120000;
+        var timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
+            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        setInterval(function() {
+            timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
+            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        }, 1000);
+        setTimeout(function() {
+        gameFunction.style.display = "none";
+        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
+        gameEnd2.style.display = "inline-block"
+        resetbutton.style.display = "inline-block";
+        }, 120000);
+    }
+    getQuestion();
+    gameFunction.style.display = "inline-block"
+});
+
+mediumbutton.addEventListener("click", function() {
+    gameSelect2.style.display = "none";
+    difficultyMode = "Medium";
+    setGameList(difficultyMode);
+    setGameRule(gameMode);
+    if (gameMode === "Time Attack") {
+        const timeLimit = defeatUnit + 120000;
+        var timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
+            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        setInterval(function() {
+            timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
+            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        }, 1000);
+        setTimeout(function() {
+        gameFunction.style.display = "none";
+        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
+        gameEnd2.style.display = "inline-block"
+        resetbutton.style.display = "inline-block";
+        }, 120000);
+    }
+    getQuestion();
+    gameFunction.style.display = "inline-block"
+});
+
+hardbutton.addEventListener("click", function() {
+    gameSelect2.style.display = "none";
+    difficultyMode = "Hard";
+    setGameList(difficultyMode);
+    setGameRule(gameMode);
+    if (gameMode === "Time Attack") {
+        const timeLimit = defeatUnit + 120000;
+        var timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
+            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        setInterval(function() {
+            timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
+            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        }, 1000);
+        setTimeout(function() {
+        gameFunction.style.display = "none";
+        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
+        gameEnd2.style.display = "inline-block"
+        resetbutton.style.display = "inline-block";
+        }, 120000);
+    }
+    getQuestion();
+    gameFunction.style.display = "inline-block"
+});
