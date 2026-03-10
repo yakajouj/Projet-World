@@ -3,7 +3,7 @@ const loginbox = document.getElementById("loginbox");
 //si clique sur le lien
 loginli.addEventListener("click", function (event)
 {
-    event.preventDefault(); //empêche rechargement de la page
+    event.preventDefault(); //empêche rechargement de la Page
     if (loginbox.style.display === "block") {
         loginbox.style.display = "none";
     } else {
