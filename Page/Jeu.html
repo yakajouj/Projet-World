@@ -30,9 +30,11 @@
         <div id="gameFunction">
             <span id="question" autoplay></span>
             <p id="questionName"></p>
-            <input type="text" id="game" list="gameAnswer">
-            <datalist id="gameAnswer"></datalist>
-            <button id="send">Valider</button>
+            <form id="userImputForm">
+                <input type="text" id="game" list="gameAnswer">
+                <datalist id="gameAnswer"></datalist>
+                <button type="submit" id="send">Envoyer</button>
+            </form>
             <p id="revealed"></p>
             <button id="newQuestion">Prochaine question</button>
             <p id="score"></p>

@@ -1,10 +1,12 @@
 //--------------------Définition des premières variables------------------------------------
 
-import { allQuestions} from "./class.js";
+import { allQuestions } from "./class.js";
 import { allSeries } from "./class.js";
 import { allGames } from "./class.js";
 import { easyQuestion } from "./class.js";
 import { mediumQuestion } from "./class.js";
+
+
 
 allGames.sort((a, b) => a[0].localeCompare(b[0]));
 allSeries.sort((a, b) => a[0].localeCompare(b[0]));
@@ -12,8 +14,7 @@ allSeries.sort((a, b) => a[0].localeCompare(b[0]));
 var goodAnswer = 0;
 const usedQuestions = [];
 let currentQuestion;
-let list1;
-let list2;
+var audioVolume = 0.35;
 var list = document.getElementById('gameAnswer');
 let difficultyMode = "";
 let gameMode = "";
@@ -23,6 +24,7 @@ let defeatUnit;
 
 const startbutton = document.getElementById("start");
 const resetbutton = document.getElementById("reset");
+const userImputForm = document.getElementById("userImputForm");
 const sendbutton = document.getElementById("send");
 const userInput = document.getElementById("game");
 const newbutton = document.getElementById("newQuestion");
@@ -40,34 +42,34 @@ const gameSelect2 = document.getElementById("gameSelect2");
 const gameFunction = document.getElementById("gameFunction");
 const gameEnd1 = document.getElementById("gameEnd1");
 const gameEnd2 = document.getElementById("gameEnd2");
-const gameFunction2 = document.getElementById("gameFunction2");
 
 gameSelect0.style.display = "inline-block";
 
 //-------------------------Sélection du mode et de la difficulté----------------------------------------
 
-newbutton.addEventListener("click",function() {
+newbutton.addEventListener("click", function () {
     document.getElementById("revealed").innerHTML = "";
     getQuestion();
+    userInput.focus();
 });
 
 resetbutton.addEventListener("click", function () {
     location.reload();
 });
 
-timeAttackbutton.addEventListener("click", function() {
+timeAttackbutton.addEventListener("click", function () {
     gameSelect1.style.display = "none";
     gameSelect2.style.display = "inline-block";
     return gameMode = "Time Attack";
 });
 
-survivebutton.addEventListener("click", function() {
+survivebutton.addEventListener("click", function () {
     gameSelect1.style.display = "none";
     gameSelect2.style.display = "inline-block";
     return gameMode = "Survive";
 });
 
-infinitebutton.addEventListener("click", function() {
+infinitebutton.addEventListener("click", function () {
     gameSelect1.style.display = "none";
     gameSelect2.style.display = "inline-block";
     return gameMode = "Infinite";
@@ -78,25 +80,25 @@ function setGameList(difficultyMode) {
         case "Easy":
             questionList = easyQuestion;
             allSeries.forEach(function (item) {
-            var option = document.createElement('option');
-            option.value = item[0];
-            list.appendChild(option);
+                var option = document.createElement('option');
+                option.value = item[0];
+                list.appendChild(option);
             });
             break;
         case "Medium":
             questionList = mediumQuestion;
             allSeries.forEach(function (item) {
-            var option = document.createElement('option');
-            option.value = item[0];
-            list.appendChild(option);
+                var option = document.createElement('option');
+                option.value = item[0];
+                list.appendChild(option);
             });
             break;
         case "Hard":
             questionList = allQuestions;
             allGames.forEach(function (item) {
-            var option = document.createElement('option');
-            option.value = item[0];
-            list.appendChild(option);
+                var option = document.createElement('option');
+                option.value = item[0];
+                list.appendChild(option);
             });
             break;
     }
@@ -105,7 +107,7 @@ function setGameList(difficultyMode) {
 
 function setGameRule(gameMode) {
     switch (gameMode) {
-        case "Survive" :
+        case "Survive":
             switch (difficultyMode) {
                 case "Easy":
                     defeatUnit = 3
@@ -117,7 +119,7 @@ function setGameRule(gameMode) {
                     defeatUnit = 1
                     break;
             }
-        case "Time Attack" :
+        case "Time Attack":
             defeatUnit = Date.now();
     }
     return defeatUnit;
@@ -141,154 +143,161 @@ function getQuestion() {
     }
     let randomIndex = Math.floor(Math.random() * availableQuestions.length);
     let question = availableQuestions[randomIndex];
-    currentQuestion = question; 
+    currentQuestion = question;
 
     switch (question[2]) {
-    case "Music":
-        let music = document.createElement("audio");
-        music.src = "../Assets/Question/" + question[0] + ".mp3";
-        music.controls = true;
-        document.getElementById("question").appendChild(music);
-        music.play();
-        document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cette musique?";
-        sendbutton.style.display = "inline-block";
-        userInput.style.display = "inline-block";
-        break;
-    case "Sound":   
-        let sound = document.createElement("audio");
-        sound.src = "../Assets/Question/" + question[0] + ".mp3";
-        sound.controls = true;
-        document.getElementById("question").appendChild(sound);
-        sound.play();
-        document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cet extrait audio ?";
-        sendbutton.style.display = "inline-block";
-        userInput.style.display = "inline-block";
-        break;
-    case "Screenshot":
-        let screenshot = document.createElement("img");
-        screenshot.src = "../Assets/Question/" + question[0] + ".png";
-        document.getElementById("question").appendChild(screenshot);
-        document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cette capture d'écran ?";
-        sendbutton.style.display = "inline-block";
-        userInput.style.display = "inline-block";
-        break;
+        case "Music":
+            let music = document.createElement("audio");
+            music.src = "../Assets/Question/" + question[0] + ".mp3";
+            music.controls = true;
+            document.getElementById("question").appendChild(music);
+            music.play();
+            music.volume = audioVolume;
+            document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cette musique?";
+            sendbutton.style.display = "inline-block";
+            userInput.style.display = "inline-block";
+            break;
+        case "Sound":
+            let sound = document.createElement("audio");
+            sound.src = "../Assets/Question/" + question[0] + ".mp3";
+            sound.controls = true;
+            document.getElementById("question").appendChild(sound);
+            sound.play();
+            sound.volume = audioVolume;
+            document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cet extrait audio ?";
+            sendbutton.style.display = "inline-block";
+            userInput.style.display = "inline-block";
+            break;
+        case "Screenshot":
+            let screenshot = document.createElement("img");
+            screenshot.src = "../Assets/Question/" + question[0] + ".png";
+            document.getElementById("question").appendChild(screenshot);
+            document.getElementById("questionName").innerHTML = "De quel jeu vidéo provient cette capture d'écran ?";
+            sendbutton.style.display = "inline-block";
+            userInput.style.display = "inline-block";
+            break;
     }
 }
 
- function answer() {
+function answer() {
     let answer = userInput.value;
     if (gameMode === "Hard") {
-    if (answer === currentQuestion[1][0] && goodAnswer === 0) {
-        goodAnswer += 1;
-        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
-        document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-        document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
+        if (answer === currentQuestion[1][0] && goodAnswer === 0) {
+            goodAnswer += 1;
+            if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
+            } else {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonne réponse: " + goodAnswer;
+            }
+        } else if (answer === currentQuestion[1][0]) {
+            goodAnswer += 1;
+            if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
+            } else {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
+            }
         } else {
-            document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-            document.getElementById("score").innerHTML = "Bonne réponse: " + goodAnswer;
-    }
-    } else  if (answer === currentQuestion[1][0]) {
-        goodAnswer += 1;
-        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
-        document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-        document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
-        } else {
-            document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-            document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
-    }
-    } else {
-        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
-        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-    } else {
-        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-    }
-    }
+            if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+                document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+            } else {
+                document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+            }
+        }
     } else {
         if (answer === currentQuestion[1][1][0] && goodAnswer === 0) {
-        goodAnswer += 1;
-        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
-        document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-        document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
+            goodAnswer += 1;
+            if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
+            } else {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonne réponse: " + goodAnswer;
+            }
+        } else if (answer === currentQuestion[1][1][0]) {
+            goodAnswer += 1;
+            if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
+            } else {
+                document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+                document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
+            }
         } else {
-            document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-            document.getElementById("score").innerHTML = "Bonne réponse: " + goodAnswer;
-    }
-    } else  if (answer === currentQuestion[1][1][0]) {
-        goodAnswer += 1;
-        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
-        document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-        document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
-        } else {
-            document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-            document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
-    }
-    } else {
-        if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
-            if (gameMode === "Survive") {
-            defeatUnit -= 1;
+            if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
+                if (gameMode === "Survive") {
+                    defeatUnit -= 1;
+                }
+                document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+            } else {
+                if (gameMode === "Survive") {
+                    defeatUnit -= 1;
+                }
+                document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
+            }
         }
-        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
-    } else {
-        if (gameMode === "Survive") {
-            defeatUnit -= 1;
-        }
-        document.getElementById("revealed").innerHTML = "Eh non ! La réponse était : <br> " + currentQuestion[1][0] + " (" + currentQuestion[1][1][0] + "), par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2] ;
     }
-    }
-    }
-    
-    usedQuestions.push(currentQuestion); 
-    userInput.value = "";
-} 
 
-sendbutton.addEventListener("click", function() {
-    sendbutton.style.display = "none";
-    userInput.style.display = "none";
-    answer();
-    if (gameMode === "Survive" && defeatUnit == 0) {
-        gameFunction.style.display = "none";
-        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
-        gameEnd1.style.display = "inline-block"
-        resetbutton.style.display = "inline-block";
-    } else {
-    newbutton.style.display = "inline-block";
+    usedQuestions.push(currentQuestion);
+    userInput.value = "";
+
+}
+
+userImputForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (userInput.style.display !== "none") {
+        sendbutton.style.display = "none";
+        userInput.style.display = "none";
+        answer();
+
+        if (gameMode === "Survive" && defeatUnit == 0) {
+
+        } else {
+            newbutton.style.display = "inline-block";
+
+            newbutton.focus();
+        }
     }
 });
 
-startbutton.addEventListener("click", function() {
+startbutton.addEventListener("click", function () {
     gameSelect0.remove()
     gameSelect1.style.display = "inline-block";
 });
 
-newbutton.addEventListener("click",function() {
+newbutton.addEventListener("click", function () {
     document.getElementById("revealed").innerHTML = "";
     getQuestion();
 });
 
 resetbutton.addEventListener("click", function () {
     location.reload();
+    
 });
 
-timeAttackbutton.addEventListener("click", function() {
+timeAttackbutton.addEventListener("click", function () {
     gameSelect1.style.display = "none";
     gameSelect2.style.display = "inline-block";
     return gameMode = "Time Attack";
 });
 
-survivebutton.addEventListener("click", function() {
+survivebutton.addEventListener("click", function () {
     gameSelect1.style.display = "none";
     gameSelect2.style.display = "inline-block";
     return gameMode = "Survive";
 });
 
-infinitebutton.addEventListener("click", function() {
+infinitebutton.addEventListener("click", function () {
     gameSelect1.style.display = "none";
     gameSelect2.style.display = "inline-block";
     return gameMode = "Infinite";
 });
 
 
-easybutton.addEventListener("click", function() {
+easybutton.addEventListener("click", function () {
     gameSelect2.style.display = "none";
     difficultyMode = "Easy";
     setGameList(difficultyMode);
@@ -296,23 +305,24 @@ easybutton.addEventListener("click", function() {
     if (gameMode === "Time Attack") {
         const timeLimit = defeatUnit + 120000;
         var timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
-            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
-        setInterval(function() {
+        document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        setInterval(function () {
             timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
             document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
         }, 1000);
-        setTimeout(function() {
-        gameFunction.style.display = "none";
-        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
-        gameEnd2.style.display = "inline-block"
-        resetbutton.style.display = "inline-block";
+        setTimeout(function () {
+            gameFunction.style.display = "none";
+            document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
+            gameEnd2.style.display = "inline-block"
+            resetbutton.style.display = "inline-block";
         }, 120000);
     }
     getQuestion();
     gameFunction.style.display = "inline-block"
+    userInput.focus();
 });
 
-mediumbutton.addEventListener("click", function() {
+mediumbutton.addEventListener("click", function () {
     gameSelect2.style.display = "none";
     difficultyMode = "Medium";
     setGameList(difficultyMode);
@@ -320,23 +330,24 @@ mediumbutton.addEventListener("click", function() {
     if (gameMode === "Time Attack") {
         const timeLimit = defeatUnit + 120000;
         var timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
-            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
-        setInterval(function() {
+        document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        setInterval(function () {
             timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
             document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
         }, 1000);
-        setTimeout(function() {
-        gameFunction.style.display = "none";
-        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
-        gameEnd2.style.display = "inline-block"
-        resetbutton.style.display = "inline-block";
+        setTimeout(function () {
+            gameFunction.style.display = "none";
+            document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
+            gameEnd2.style.display = "inline-block"
+            resetbutton.style.display = "inline-block";
         }, 120000);
     }
     getQuestion();
     gameFunction.style.display = "inline-block"
+    userInput.focus();
 });
 
-hardbutton.addEventListener("click", function() {
+hardbutton.addEventListener("click", function () {
     gameSelect2.style.display = "none";
     difficultyMode = "Hard";
     setGameList(difficultyMode);
@@ -344,18 +355,19 @@ hardbutton.addEventListener("click", function() {
     if (gameMode === "Time Attack") {
         const timeLimit = defeatUnit + 120000;
         var timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
-            document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
-        setInterval(function() {
+        document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
+        setInterval(function () {
             timeLeft = (Math.ceil((timeLimit - Date.now()) / 1000));
             document.getElementById("score").innerHTML = "Temps restant : " + timeLeft;
         }, 1000);
-        setTimeout(function() {
-        gameFunction.style.display = "none";
-        document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
-        gameEnd2.style.display = "inline-block"
-        resetbutton.style.display = "inline-block";
+        setTimeout(function () {
+            gameFunction.style.display = "none";
+            document.getElementById("scoredisplay").innerHTML = "Nombre de bonnes réponses : " + goodAnswer;
+            gameEnd2.style.display = "inline-block"
+            resetbutton.style.display = "inline-block";
         }, 120000);
     }
     getQuestion();
     gameFunction.style.display = "inline-block"
+    userInput.focus();
 });
