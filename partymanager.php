@@ -52,6 +52,10 @@ class partymanager
                 $request = $this-> bdd->prepare("INSERT INTO  jeu  (score,id_joueur) VALUES (?,?)");
                 $request->execute(array($this->score,$id_joueur));
             }
+            else
+            {
+                echo "<p class='alerte_temps'>temps écrouler</p>";
+            }
         }
     }
     public function chrono()
