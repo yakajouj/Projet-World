@@ -76,7 +76,6 @@ const s075 = ["Slither.io", "Steve Howse"];
 const s076 = ["Genshin Impact", "miHoYo"];
 const s077 = ["World of Warcraft", "Blizzard Entertainment"];
 
-
 const j001 = ["Final Fantasy VII", s001, 1997];
 const j002 = ["Final Fantasy XV", s001, 2016];
 const j003 = ["Final Fantasy XVI", s001, 2016];
@@ -147,7 +146,6 @@ const j067 = ["Xenoblade Chronicles 2", s033, 2018];
 const j068 = ["Xenoblade Chronicles 3", s033, 2022];
 const j069 = ["Overwatch", s034, 2016];
 const j070 = ["Heartstone", s035, 2014];
-const j071 = ["Rayman Origins", s036, 2011];
 const j072 = ["Rayman Legends", s036, 2013];
 const j073 = ["Persona 3", s037, 2006];
 const j074 = ["Persona 4", s037, 2008];
@@ -190,6 +188,77 @@ const j110 = ["Call of Duty: Black Ops II", s046, 2012];
 const j111 = ["Call of Duty: Black Ops III", s046, 2015];
 const j112 = ["Call of Duty: World at War", s046, 2008];
 const j113 = ["Pokémon Rouge Feu/Vert Feuille", s042, 2004];
+const j114 = ["The Legend of Zelda", s047, 1986];
+const j115 = ["The Legend of Zelda: Link's Awakening", s047, 1993];
+const j116 = ["The Legend of Zelda: Ocarina of Time", s047, 1998];
+const j117 = ["The Legend of Zelda: Breath of the Wild", s047, 2017];
+const j118 = ["Cyberpunk 2077", s048, 2020];
+const j119 = ["The Elder Scrolls IV: Oblivion", s049, 2006];
+const j120 = ["The Elder Scrolls III: Morrowind", s049, 2002];
+const j121 = ["The Elder Scrolls V: Skyrim", s049, 2011];
+const j122 = ["Halo 2", s051, 2002];
+const j123 = ["Halo 3", s051, 2007];
+const j124 = ["Halo: Reach", s051, 2010];
+const j125 = ["Metal Gear Solid", s052, 1998];
+const j126 = ["Metal Gear Solid 2: Sons of Liberty", s052, 2001];
+const j127 = ["Metal Gear Solid 3: Snake Eater", s052, 2004];
+const j128 = ["Metal Gear Solid 4: Guns of the Patriots", s052, 2008];
+const j129 = ["Metal Gear Solid V: The Phantom Pain", s052, 2015];
+const j130 = ["Kirby's Dream Land", s053, 1992];
+const j131 = ["Kirby's Adventure", s053, 1993];
+const j132 = ["Kirby Super Star", s053, 1996];
+const j133 = ["Kirby's Return to Dream Land", s053, 2011];
+const j134 = ["Kirby: Triple Deluxe", s053, 2014];
+const j135 = ["Kirby and the Forgotten Land", s053, 2022]
+const j136 = ["Pac-Man", s054, 1980];
+const j137 = ["Punch-Out!!", s055, 1984];
+const j138 = ["Super Punch-Out!! ", s055, 1994];
+const j139 = ["Super Mario World 2"]
+const j140 = ["Yoshi's Story", s056, 1997];
+const j141 = ["Yoshi's Woolly World", s056, 2015];
+const j142 = ["Super Metroid", s057, 1994];
+const j143 = ["Yoshi's Crafted World", s056, 2019];
+const j144 = ["Metroid Prime", s057, 2002];
+const j145 = ["Metroid Fusion", s057, 2002];
+const j146 = ["Metroid Dread", s057, 2021];
+const j147 = ["Donkey Kong Country", s059, 1994];
+const j148 = ["Donkey Kong Country 2: Diddy's Kong Quest", s059, 1995];
+const j149 = ["Donkey Kong Country 3: Dixie Kong's Double Trouble!", s059, 1996];
+const j150 = ["Donkey Kong Country Returns", s059, 2010];
+const j151 = ["Donkey Kong Country: Tropical Freeze", s059, 2014];
+const j152 = ["Splatoon", s058, 2015];
+const j153 = ["Splatoon 2", s058, 2017];
+const j154 = ["Splatoon 3", s058, 2022];
+const j155 = ["Mario & Luigi: Superstar Saga", s060, 2003];
+const j156 = ["Mario & Luigi: Partners in Time", s060, 2005];
+const j157 = ["Mario & Luigi: Bowser's Inside Story", s060, 2009];
+const j158 = ["Touhou 6: The Embodiment of Scarlet Devil", s062, 2002];
+const j159 = ["Touhou 7: Perfect Cherry Blossom", s062, 2003];
+const j160 = ["Touhou 8: Imperishable Night", s062, 2004];
+const j161 = ["Touhou 9: Phantasmagoria of Flower View", s062, 2005];
+const j162 = ["Touhou 10: Mountain of Faith", s062, 2007];
+const j163 = ["Doki Doki Literature Club!", s063, 2017];
+const j164 = ["Fall Guys", s065, 2020];
+const j165 = ["Pico Park", s066, 2016];
+const j166 = ["Pico Park 2", s066, 2024];
+const j167 = ["Mega Man", s068, 1987];
+const j168 = ["Mega Man 2", s068, 1988];
+const j169 = ["Mega Man 3", s068, 1990];
+const j170 = ["Mega Man X", s068, 1993];
+const j171 = ["Mega Man 11", s068, 2018];
+const j172 = ["Resident Evil 2 Remake", s064, 2019];
+const j173 = ["Resident Evil 3 Remake", s064, 2020];
+const j174 = ["Resident Evil 4 Remake", s064, 2023];
+const j175 = ["Resident Evil 7: Biohazard", s064, 2017];
+const j176 = ["Resident Evil Village", s064, 2021];
+const j177 = ["Resident Evil Requiem", s064, 2026]; 
+const j178 = ["Guilty Gear", s067, 1998];
+const j179 = ["Guilty Gear Xrd REV 2", s067, 2017];
+const j180 = ["Guilty Gear -Strive-", s067, 2021];
+const j181 = ["Clash Royale", s069, 2016];
+const j182 = ["Clash of Clans", s070, 2012];
+const j183 = ["Hades", s072, 2020]; 
+const j184 = ["Hades II", s072, 2025];
 
 const t001 = ["t001", j001, "Screenshot", "Facile"];
 const t002 = ["t002", j007, "Sound", "Moyen"];
@@ -240,27 +309,32 @@ const t046 = ["t046", j096, "Music", "Facile"];
 const t047 = ["t047", j097, "Music", "Facile"];
 const t048 = ["t048", j097, "Music", "Difficile"];
 const t049 = ["t049", j096, "Music", "Difficile"];
+const t050 = ["t050", j056, "Screenshot", "Facile"];
+const t051 = ["t051", j056, "Screenshot", "Facile"];
+const t052 = ["t052", j080, "Music", "Facile"];
+const t053 = ["t053", j080, "Screenshot", "Facile"];
+const t054 = ["t054", j075, "Music", "Difficile"];
+const t055 = ["t054", j075, "Music", "Moyen"];
+
 
 
 export const allGames = [
   j001, j002, j003, j004, j005, j006, j007, j008, j009, j010,
   j011, j012, j013, j014, j015, j016, j017, j018, j019, j020,
   j021, j022, j023, j024, j025, j026, j027, j028, j029, j030,
-  j031, j032, j033, j034, j035, j036, j037, j038, j039, j040,
-  j041, j042, j043, j044, j045, j046, j047, j048, j049, j050,
+  j031, j032, j033, j034, j035, j036, j037, j038, j042, j050, 
   j051, j052, j053, j054, j055, j056, j057, j058, j059, j060,
   j061, j062, j063, j064, j065, j066, j067, j068, j069, j070,
   j071, j072, j073, j074, j075, j076, j077, j078, j079, j080,
   j081, j082, j083, j084, j085, j086, j087, j088, j089, j090,
   j091, j092, j093, j094, j095, j096, j097, j098, j099, j100,
   j101, j102, j103, j104, j105, j106, j107, j108, j109, j110,
-  j111, j112, j113
+  j111, j112, j113, 
 ];
 
 export const allQuestions = [
   t001, t002, t003, t004, t005, t006, t007, t008, t009, t010,
   t011, t012, t013, t014, t015, t016, t017, t018, t019, t020,
-  t021, t022, t023, t024, t025, t026, t027, t028, t029, t030,
-  t031, t032, t033, t034, t035, t036, t037, t038, t039, t040,
-  t041, t042, t043, t044, t045, t046, t047, t048, t049
+  t021, t022, t023, t024, t025, t030,
+  t031, t034, t036, t037, t038, t042, t050, t051, t052, t053
 ];
