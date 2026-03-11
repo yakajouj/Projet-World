@@ -44,7 +44,10 @@ const gameEnd1 = document.getElementById("gameEnd1");
 const gameEnd2 = document.getElementById("gameEnd2");
 
 gameSelect0.style.display = "inline-block";
-
+startbutton.addEventListener("click", function() {
+    gameSelect0.remove()
+    gameSelect1.style.display = "inline-block";
+});
 //-------------------------Sélection du mode et de la difficulté----------------------------------------
 
 newbutton.addEventListener("click", function () {
