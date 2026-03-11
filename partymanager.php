@@ -47,7 +47,7 @@ class partymanager
         }
         elseif ($this->mode_de_jeu === "time_attack")
         {
-            if ($this-> chrono() === true && $this-> score > 0)
+            if ($this-> temprestant() === true && $this-> score > 0)
             {
                 $request = $this-> bdd->prepare("INSERT INTO  jeu  (score,id_joueur) VALUES (?,?)");
                 $request->execute(array($this->score,$id_joueur));
@@ -58,7 +58,7 @@ class partymanager
             }
         }
     }
-    public function chrono()
+    public function temprestant()
     {
         $heure_actuelle = time();
         $temps_passe = $heure_actuelle - $this->heure_debut;

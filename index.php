@@ -49,6 +49,13 @@ if (isset($_POST['submit']))
         include ('header.php');
         ?>
     </header>
-<ul><li><a href="blindgame.php">jouer</a></li></ul>
+    <p> Testez vos connaissances en jeux vidéo</p>
+    <h2><a href="Page/Jeu.html"><button>JOUER</button></a><a href="Page/explications.html"><button>REGLES</button></a></h2>
+    <p> COUP DE COEUR</p>
+    <p>Dans BlindGame, le but est de trouver le plus de bonnes réponses !
+        Vous aurez un mélange d'images et de sons provennant de divers jeux vidéo, à vous
+        retrouver le jeu d'origine.</p>
+    <br>
+    Romain Yanis Alexis
 </body>
 </html>

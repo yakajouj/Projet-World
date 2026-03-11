@@ -42,3 +42,4 @@ border: 1px solid;
                 </li>
                 </ul>
         </nav>
+<h1>BLIND GAME</h1>
