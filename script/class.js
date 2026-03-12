@@ -251,13 +251,13 @@ const j173 = ["Resident Evil 3 Remake", s064, 2020];
 const j174 = ["Resident Evil 4 Remake", s064, 2023];
 const j175 = ["Resident Evil 7: Biohazard", s064, 2017];
 const j176 = ["Resident Evil Village", s064, 2021];
-const j177 = ["Resident Evil Requiem", s064, 2026]; 
+const j177 = ["Resident Evil Requiem", s064, 2026];
 const j178 = ["Guilty Gear", s067, 1998];
 const j179 = ["Guilty Gear Xrd REV 2", s067, 2017];
 const j180 = ["Guilty Gear -Strive-", s067, 2021];
 const j181 = ["Clash Royale", s069, 2016];
 const j182 = ["Clash of Clans", s070, 2012];
-const j183 = ["Hades", s072, 2020]; 
+const j183 = ["Hades", s072, 2020];
 const j184 = ["Hades II", s072, 2025];
 
 const t001 = ["t001", j001, "Screenshot", "Facile"];
@@ -318,10 +318,10 @@ const t055 = ["t054", j075, "Music", "Moyen"];
 
 
 export const allSeries = [
-  s001, s002, s003, s004, s005, s006, s007, s008, s009, s010, 
+  s001, s002, s003, s004, s005, s006, s007, s008, s009, s010,
   s011, s012, s013, s014, s015, s016, s017, s018, s019, s020,
   s021, s022, s023, s024, s025, s026, s027, s028, s029, s030,
-  s031, s032, s033, s034, s035, s036, s037, s038, s039, s040, 
+  s031, s032, s033, s034, s035, s036, s037, s038, s039, s040,
   s041, s042, s043, s044, s045, s046, s047, s048, s049, s050,
   s051, s052, s053, s054, s055, s056, s057, s058, s059, s060,
   s061, s062, s063, s064, s065, s066, s067, s068, s069, s070
@@ -331,14 +331,22 @@ export const allGames = [
   j001, j002, j003, j004, j005, j006, j007, j008, j009, j010,
   j011, j012, j013, j014, j015, j016, j017, j018, j019, j020,
   j021, j022, j023, j024, j025, j026, j027, j028, j029, j030,
-  j031, j032, j033, j034, j035, j036, j037, j038, j042, j050, 
+  j031, j032, j033, j034, j035, j036, j037, j038, j039, j040,
+  j041, j042, j043, j044, j045, j046, j047, j048, j049, j050,
   j051, j052, j053, j054, j055, j056, j057, j058, j059, j060,
   j061, j062, j063, j064, j065, j066, j067, j068, j069, j070,
   j072, j073, j074, j075, j076, j077, j078, j079, j080,
   j081, j082, j083, j084, j085, j086, j087, j088, j089, j090,
   j091, j092, j093, j094, j095, j096, j097, j098, j099, j100,
   j101, j102, j103, j104, j105, j106, j107, j108, j109, j110,
-  j111, j112, j113, 
+  j111, j112, j113, j114, j115, j116, j117, j118, j119, j120,
+  j121, j122, j123, j124, j125, j126, j127, j128, j129, j130,
+  j131, j132, j133, j134, j135, j136, j137, j138, j139, j140,
+  j141, j142, j143, j144, j145, j146, j147, j148, j149, j150,
+  j151, j152, j153, j154, j155, j156, j157, j158, j159, j160,
+  j161, j162, j163, j164, j165, j166, j167, j168, j169, j170,
+  j171, j172, j173, j174, j175, j176, j177, j178, j179, j180,
+  j181, j182, j183, j184
 ];
 
 export const easyQuestion = [t001, t003, t012, t013, t018];

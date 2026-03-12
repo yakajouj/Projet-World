@@ -14,10 +14,9 @@ body, html {
     width: 90vh;
 }
 
-#gameSelect1, #gameSelect2, #gameFunction, #gameEnd {
+#gameSelect1, #gameSelect2, #gameFunction, #gameEnd1, #gameEnd2, #reset , #gameFunction2 {
     display: none;
 }
-
 
 #question {
     height: 60vh;
@@ -35,15 +34,14 @@ body, html {
     object-fit: contain;
 }
 
-#questionName {
-    
-}
+
 
 button {
     padding: 10px 20px;
     margin: 20px auto;
-    display: block; 
+    display: block;
 }
+
 ul {
     list-style: none;
     margin: 0;
