@@ -40,7 +40,7 @@ if (isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/script.js" defer></script>
+    <script src="script/script.js" defer type="module"></script>
     <title>blindgame</title>
 </head>
 <body>

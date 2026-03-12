@@ -14,7 +14,7 @@ body, html {
     width: 90vh;
 }
 
-#gameSelect1, #gameSelect2, #gameFunction, #gameEnd1, #gameEnd2, #reset , #gameFunction2 {
+#gameSelect0,#gameSelect1, #gameSelect2, #gameFunction, #gameEnd1, #gameEnd2, #reset , #gameFunction2 {
     display: none;
 }
 
