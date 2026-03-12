@@ -40,7 +40,7 @@ if (isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/script.js" defer type="module"></script>
+    <script src="script/script.js" defer></script>
     <title>blindgame</title>
 </head>
 <body>
@@ -50,7 +50,7 @@ if (isset($_POST['submit']))
         ?>
     </header>
     <p> Testez vos connaissances en jeux vidéo</p>
-    <h2><a href="Page/Jeu.html"><button>JOUER</button></a><a href="Page/explications.html"><button>REGLES</button></a></h2>
+    <h2><a href="Page/Jeu.php"><button>JOUER</button></a><a href="Page/explications.php"><button>REGLES</button></a></h2>
     <p> COUP DE COEUR</p>
     <p>Dans BlindGame, le but est de trouver le plus de bonnes réponses !
         Vous aurez un mélange d'images et de sons provennant de divers jeux vidéo, à vous

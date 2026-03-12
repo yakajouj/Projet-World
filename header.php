@@ -1,3 +1,6 @@
+<?php
+$chemin = (basename($_SERVER['PHP_SELF']) == 'Jeu.php') ? '../' : '';
+?>
 <nav>
             <ul>
                 <li>
@@ -14,7 +17,7 @@ border: 1px solid;
 }
 </style> <a href='#' id='login'>" . htmlspecialchars($_SESSION['joueur']) . "</a>";
                     }?>
-                    <a href="#" id="login"><img src="img/login.png" alt="login"></a>
+                    <a href="#" id="login"><img src="<?php echo $chemin; ?>img/login.png" alt="login"></a>
                     <div id="loginbox">
                         <?php
                         if (isset($_SESSION['joueur']))

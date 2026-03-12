@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -9,6 +12,11 @@
 </head>
 
 <body>
+<header>
+    <?php
+    include ('../header.php');
+    ?>
+</header>
 <div class="tableau">
     <div id="gameSelect0">
         <img src="" alt="">
