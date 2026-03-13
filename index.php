@@ -22,6 +22,7 @@ if (isset($_POST['submit']))
             if ($result_utilisateur && password_verify($_POST['db_password'], $result_utilisateur['password']))
             {
                 $_SESSION['joueur'] = $result_utilisateur['username'];
+                $_SESSION['id_joueur'] = $result_utilisateur['id_joueur'];
                 header("Location: ". $_SERVER['PHP_SELF']);
                 exit();
 
@@ -40,7 +41,7 @@ if (isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/script.js" defer></script>
+    <script type="module" src="script/script.js" defer></script>
     <title>blindgame</title>
 </head>
 <body>

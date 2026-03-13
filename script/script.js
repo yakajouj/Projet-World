@@ -43,6 +43,18 @@ const gameFunction = document.getElementById("gameFunction");
 const gameEnd1 = document.getElementById("gameEnd1");
 const gameEnd2 = document.getElementById("gameEnd2");
 
+function envoie_php(action_demandee,dificulty,mode_jeu)
+{
+    let formData  = new FormData();
+    formData.append('action', action_demandee)
+    formData.append('dificulty', dificulty)
+    formData.append('mode_jeu', mode_jeu);
+    fetch('Jeu.php',
+    {
+        method:'POST',
+        body:formData
+    })
+}
 // On vérifie d'abord que la boîte gameSelect0 existe sur la page avant de changer son style !
 if (gameSelect0 !== null) {
     gameSelect0.style.display = "inline-block";

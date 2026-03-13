@@ -35,7 +35,7 @@ class partymanager
             $this->score += 500;
         }
     }
-    public function sauvgarder_score($id_joueur)
+    public function sauvegarder_score($id_joueur)
     {
         if ($this->mode_de_jeu === "survive")
         {

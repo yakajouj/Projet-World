@@ -1,5 +1,21 @@
 <?php
 session_start();
+if (isset($_POST['score_final'])) {
+    if (isset($_SESSION['id_joueur']))
+    {
+        require_once "bdd.php";
+        require_once "partymanager.php";
+        $scoreObtenu = $_POST['score_final'];
+        $modeChoisi = $_POST['mode_jeu'];
+        $difficulte = $_POST['difficulte'];
+        $pseudo = isset($_SESSION['joueur']) ? $_SESSION['joueur'] : 'Anonyme';
+        $conexionbdd = connexionbdd();
+        $partymanager = new partymanager($conexionbdd, $scoreObtenu, $difficulte, $modeChoisi);
+        $id_joueur  = $_SESSION['id_joueur'];
+        $partymanager ->sauvegarder_score($id_joueur);
+        exit();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
