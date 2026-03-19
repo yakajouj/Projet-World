@@ -17,10 +17,18 @@ if (isset($_POST['action'])) {
     }
 
     elseif ($action === 'goodreponse') {
-        // On ajoute +1 au score sécurisé dans la mémoire du serveur
         if (isset($_SESSION['score'])) {
-            $_SESSION['score'] += 1;
-            echo "Points ajoutés ! (" . $_SESSION['score'] . " point(s))";
+            // LA SÉCURITÉ : Si on est en Time Attack, on vérifie l'heure AVANT de donner le point !
+            if ($_SESSION['mode_partie'] === "Time Attack" && isset($_SESSION['heure_debut'])) {
+                $temps_ecoule = time() - $_SESSION['heure_debut'];
+                // On laisse une petite marge de 2 secondes (122) pour les lags d'internet
+                if ($temps_ecoule > 122) {
+                    echo "Triche détectée : Temps écoulé, point refusé !";
+                    exit(); // On bloque ! Le score n'augmente pas.
+                }
+                $_SESSION['score'] += 1;
+                echo "Points ajoutés ! (" . $_SESSION['score'] . " point(s))";
+            }
         }
         exit();
     }
