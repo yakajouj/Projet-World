@@ -47,13 +47,16 @@ function envoie_php(action_demandee,dificulty,mode_jeu)
 {
     let formData  = new FormData();
     formData.append('action', action_demandee)
-    formData.append('dificulty', dificulty)
+    formData.append('difficulte', dificulty)
     formData.append('mode_jeu', mode_jeu);
     fetch('Jeu.php',
     {
         method:'POST',
         body:formData
     })
+        .then(response => response.text())
+        .then(data => console.log("Réponse de PHP pour l'action " + action_demandee + " :", data))
+        .catch(error => console.error("Erreur de communication :", error));
 }
 // On vérifie d'abord que la boîte gameSelect0 existe sur la page avant de changer son style !
 if (gameSelect0 !== null) {
@@ -64,7 +67,6 @@ if (gameSelect0 !== null) {
 if (startbutton !== null) {
     startbutton.addEventListener("click", function() {
         gameSelect0.style.display = "none"; // C'est plus propre que .remove()
-
         if (gameSelect1 !== null) {
             gameSelect1.style.display = "inline-block";
         }
@@ -169,8 +171,9 @@ function getQuestion() {
         document.getElementById("score").innerHTML = "";
         document.getElementById("questionName").innerHTML = "";
         document.getElementById("question").innerHTML = "Vous avez terminé toutes les questions !";
+        envoie_php('fin_partie', difficultyMode, gameMode)
         resetbutton.style.display = "inline-block";
-
+        return;
     }
     let randomIndex = Math.floor(Math.random() * availableQuestions.length);
     let question = availableQuestions[randomIndex];
@@ -215,6 +218,7 @@ function answer() {
     if (gameMode === "Hard") {
         if (answer === currentQuestion[1][0] && goodAnswer === 0) {
             goodAnswer += 1;
+            envoie_php('goodreponse',difficultyMode,gameMode);
             if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
                 document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
                 document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
@@ -224,6 +228,7 @@ function answer() {
             }
         } else if (answer === currentQuestion[1][0]) {
             goodAnswer += 1;
+            envoie_php('goodreponse',difficultyMode,gameMode);
             if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
                 document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
                 document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
@@ -241,6 +246,7 @@ function answer() {
     } else {
         if (answer === currentQuestion[1][1][0] && goodAnswer === 0) {
             goodAnswer += 1;
+            envoie_php('goodreponse',difficultyMode,gameMode);
             if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
                 document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
                 document.getElementById("score").innerHTML = "Bonne réponses: " + goodAnswer;
@@ -250,6 +256,7 @@ function answer() {
             }
         } else if (answer === currentQuestion[1][1][0]) {
             goodAnswer += 1;
+            envoie_php('goodreponse',difficultyMode,gameMode);
             if (currentQuestion[1][1][0] === currentQuestion[1][0]) {
                 document.getElementById("revealed").innerHTML = "Oui ! La réponse était bien : <br> " + currentQuestion[1][0] + ", par " + currentQuestion[1][1][1] + ", " + currentQuestion[1][2];
                 document.getElementById("score").innerHTML = "Bonnes réponses: " + goodAnswer;
@@ -285,6 +292,7 @@ if (userImputForm !== null) {
             answer();
 
             if (gameMode === "Survive" && defeatUnit == 0) {
+                envoie_php('fin_partie',difficultyMode,gameMode);
 
             } else {
                 newbutton.style.display = "inline-block";
@@ -316,27 +324,31 @@ if (timeAttackbutton !== null) {
     timeAttackbutton.addEventListener("click", function () {
         gameSelect1.style.display = "none";
         gameSelect2.style.display = "inline-block";
-        return gameMode = "Time Attack";
+        gameMode = "Time Attack";
+        envoie_php('select_mode', difficultyMode, gameMode);
     });
 }
 if (survivebutton !== null) {
     survivebutton.addEventListener("click", function () {
         gameSelect1.style.display = "none";
         gameSelect2.style.display = "inline-block";
-        return gameMode = "Survive";
+        gameMode = "Survive";
+        envoie_php('select_mode', difficultyMode, gameMode);
     });
 }
 if (infinitebutton !== null) {
     infinitebutton.addEventListener("click", function () {
         gameSelect1.style.display = "none";
         gameSelect2.style.display = "inline-block";
-        return gameMode = "Infinite";
+        gameMode = "Infinite";
+        envoie_php('select_mode', difficultyMode, gameMode);
     });
 }
 if (easybutton !== null) {
     easybutton.addEventListener("click", function () {
         gameSelect2.style.display = "none";
         difficultyMode = "Easy";
+        envoie_php('demarrer', difficultyMode, gameMode);
         setGameList(difficultyMode);
         setGameRule(gameMode)
         if (gameMode === "Time Attack") {
@@ -363,6 +375,7 @@ if (mediumbutton !== null) {
     mediumbutton.addEventListener("click", function () {
         gameSelect2.style.display = "none";
         difficultyMode = "Medium";
+        envoie_php('demarrer', difficultyMode, gameMode);
         setGameList(difficultyMode);
         setGameRule(gameMode);
         if (gameMode === "Time Attack") {
@@ -389,6 +402,7 @@ if (hardbutton !== null) {
     hardbutton.addEventListener("click", function () {
         gameSelect2.style.display = "none";
         difficultyMode = "Hard";
+        envoie_php('demarrer', difficultyMode, gameMode);
         setGameList(difficultyMode);
         setGameRule(gameMode);
         if (gameMode === "Time Attack") {

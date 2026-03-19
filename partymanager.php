@@ -16,46 +16,62 @@ class partymanager
         $this->vie = $viedepart;
         $this->dificulte = $dificulte;
         $this->mode_de_jeu = $mode_de_jeu;
-        $this->heure_debut = time();
         $this->temps_restant = 120;
+        if (isset($_SESSION['heure_debut']))
+        {
+            $this->heure_debut = $_SESSION['heure_debut'];
+        }else{
+            $this->heure_debut = time();
+        }
 
     }
     public function compter_score()
     {
-        if ($this->dificulte === "facile")
+        if ($this->dificulte === "Easy")
         {
             $this->score += 100;
         }
-        elseif ($this->dificulte === "moyen")
+        elseif ($this->dificulte === "Medium")
         {
             $this->score += 300;
         }
-        elseif ($this->dificulte === "dificile")
+        elseif ($this->dificulte === "Hard")
         {
             $this->score += 500;
         }
     }
     public function sauvegarder_score($id_joueur)
     {
-        if ($this->mode_de_jeu === "survive")
+        if ($this->mode_de_jeu === "Survive")
         {
-            if ($this-> vie === 0 && $this-> score > 0)
+            if ($this-> score > 0)
             {
-                $request = $this-> bdd->prepare("INSERT INTO  jeu  (score,id_joueur)VALUES(?,?)");
-                $request->execute(array($this->score,$id_joueur));
+                $request = $this-> bdd->prepare("INSERT INTO  jeu  (mode_de_jeu,difficulty,score,id_joueur) VALUES (?,?,?,?)");
+                $reussite = $request->execute(array($this->mode_de_jeu,$this->dificulte,$this->score,$id_joueur));
+                if (!$reussite) {
+                    echo " ERREUR SQL : ";
+                    print_r($request->errorInfo());
+                    exit(); // On bloque la suite pour bien voir l'erreur dans la console
+                }
             }
         }
-        elseif ($this->mode_de_jeu === "time_attack")
+        elseif ($this->mode_de_jeu === "Time Attack")
         {
             if ($this-> temprestant() === true && $this-> score > 0)
             {
-                $request = $this-> bdd->prepare("INSERT INTO  jeu  (score,id_joueur) VALUES (?,?)");
-                $request->execute(array($this->score,$id_joueur));
+                $request = $this-> bdd->prepare("INSERT INTO  jeu  (mode_de_jeu,difficulty,score,id_joueur) VALUES (?,?,?,?)");
+                $reussite = $request->execute(array($this->mode_de_jeu,$this->dificulte,$this->score,$id_joueur));
+                if (!$reussite) {
+                    echo " ERREUR SQL : ";
+                    print_r($request->errorInfo());
+                    exit(); // On bloque la suite pour bien voir l'erreur dans la console
+                }
             }
             else
             {
                 echo "<p class='alerte_temps'>temps écrouler</p>";
             }
+
         }
     }
     public function temprestant()
