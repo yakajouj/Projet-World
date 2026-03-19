@@ -26,9 +26,9 @@ if (isset($_POST['action'])) {
                     echo "Triche détectée : Temps écoulé, point refusé !";
                     exit(); // On bloque ! Le score n'augmente pas.
                 }
-                $_SESSION['score'] += 1;
-                echo "Points ajoutés ! (" . $_SESSION['score'] . " point(s))";
             }
+            $_SESSION['score'] += 1;
+            echo "Points ajoutés ! (" . $_SESSION['score'] . " point(s))";
         }
         exit();
     }
