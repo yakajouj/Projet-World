@@ -42,23 +42,8 @@ class partymanager
     }
     public function sauvegarder_score($id_joueur)
     {
-        if ($this->mode_de_jeu === "Survive")
+        if ($this->mode_de_jeu === "Survive" || $this->mode_de_jeu === "Time Attack")
         {
-            if ($this-> score > 0)
-            {
-                $request = $this-> bdd->prepare("INSERT INTO  jeu  (mode_de_jeu,difficulty,score,id_joueur) VALUES (?,?,?,?)");
-                $reussite = $request->execute(array($this->mode_de_jeu,$this->dificulte,$this->score,$id_joueur));
-                if (!$reussite) {
-                    echo " ERREUR SQL : ";
-                    print_r($request->errorInfo());
-                    exit(); // On bloque la suite pour bien voir l'erreur dans la console
-                }
-            }
-        }
-        elseif ($this->mode_de_jeu === "Time Attack")
-        {
-            if ($this-> temprestant() === true && $this-> score > 0)
-            {
                 $request = $this-> bdd->prepare("INSERT INTO  jeu  (mode_de_jeu,difficulty,score,id_joueur) VALUES (?,?,?,?)");
                 $reussite = $request->execute(array($this->mode_de_jeu,$this->dificulte,$this->score,$id_joueur));
                 if (!$reussite) {
@@ -71,8 +56,6 @@ class partymanager
             {
                 echo "<p class='alerte_temps'>temps écrouler</p>";
             }
-
-        }
     }
     public function temprestant()
     {

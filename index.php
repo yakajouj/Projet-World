@@ -25,7 +25,6 @@ if (isset($_POST['submit']))
                 $_SESSION['id_joueur'] = $result_utilisateur['id_joueur'];
                 header("Location: ". $_SERVER['PHP_SELF']);
                 exit();
-
             }
             else
             {
