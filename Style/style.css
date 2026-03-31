@@ -37,7 +37,15 @@ body, html {
 
 
 button {
+    background-color: black ;
+    color: rgb(49, 241, 255);
     padding: 10px 20px;
     margin: 20px auto;
     display: block; 
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 17px;
+    cursor: pointer ;
+    
 }
